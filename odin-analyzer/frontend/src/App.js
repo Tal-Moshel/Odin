@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import TeamSelectSidePanel from "./components/TeamSelectSidePanel";
+
 import "./App.css";
- 
+
 function App() {
     // usestate for setting a javascript
     // object for storing and using data
@@ -37,7 +39,7 @@ function App() {
                 <p>{data.age}</p>
                 <p>{data.date}</p>
                 <p>{data.programming}</p>
- 
+                <TeamSelectSidePanel teams_list={[0, 1, 2, 3]}></TeamSelectSidePanel>
             </header>
         </div>
     );
