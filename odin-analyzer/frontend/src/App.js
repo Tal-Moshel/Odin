@@ -39,7 +39,8 @@ function App() {
                 <p>{data.age}</p>
                 <p>{data.date}</p>
                 <p>{data.programming}</p>
-                <TeamSelectSidePanel teams_list={[0, 1, 2, 3]}></TeamSelectSidePanel>
+                <TeamSelectSidePanel
+                    teams_list={[0, 1, 2, 3]} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
             </header>
         </div>
     );
