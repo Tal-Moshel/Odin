@@ -1,4 +1,6 @@
 import React, { useState, useEffect, Component, ReactElement } from "react";
+import Checkbox from "@mui/material/Checkbox"
+import { FormGroup, FormControlLabel} from "@mui/material";
 
 interface TeamSelectSidePanelProps {
     teams_list: number[];
@@ -10,7 +12,7 @@ interface TeamSelectSidePanelState {
 }
 
 class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelectSidePanelState> {
-    constructor(props){
+    constructor(props: TeamSelectSidePanelProps){
         super(props);
         
         this.state = {
@@ -30,20 +32,18 @@ class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelect
         let teams_components: ReactElement[] = [];
         this.props.teams_list.forEach((team_number) => {
             teams_components.push(
-                <div>
-                    <li>{team_number}</li>
-                    
-                </div>
+                <FormControlLabel
+                    control={
+                        <Checkbox/>}
+                    label={team_number} key={team_number}/>
             )
         })
         
         return ( 
-            <div>
-                <button onClick={(obj) => {this.on_select_button_press()}} value={"Select"}/>
-                <ul>
-                    {teams_components}
-                </ul>
-            </div>     
+            <FormGroup>
+                {teams_components}
+            </FormGroup>
+              
         )
     }
 }
