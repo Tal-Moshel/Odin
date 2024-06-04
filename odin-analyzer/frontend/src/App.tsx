@@ -19,7 +19,7 @@ function App() {
         >
           Learn React
         </a>
-        <TeamSelectSidePanel teams_list={[0,1,2,3]} on_teams_selected={() => {}}></TeamSelectSidePanel>
+        <TeamSelectSidePanel teams_list={[0,1,2,3]} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
       </header>
     </div>
   );
