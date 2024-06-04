@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component, ReactElement } from "react";
 import Checkbox from "@mui/material/Checkbox"
-import { FormGroup, FormControlLabel, Button} from "@mui/material";
+import { Box, Drawer, FormGroup, FormControlLabel, Button} from "@mui/material";
 
 interface TeamSelectSidePanelProps {
     teams_list: number[];
@@ -39,12 +39,13 @@ class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelect
             )
         })
         
-        return ( 
-            <FormGroup>
-                <Button variant="contained" onClick={this.on_select_button_press}>Select</Button>
-                {teams_components}
-            </FormGroup>
-              
+        return (
+            <Drawer open={true}>
+                    <Button variant="contained" onClick={this.on_select_button_press}>Select</Button>
+                    <FormGroup>
+                        {teams_components}
+                    </FormGroup>
+            </Drawer> 
         )
     }
 }
