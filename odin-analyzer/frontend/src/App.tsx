@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import TeamSelectSidePanel from './components/TeamSelectSidePanel';
 
-import { Box, Button, Drawer, createTheme, CssBaseline, Typography } from "@mui/material";
+import { Box, Button, Drawer, createTheme, CssBaseline, Typography, Stack } from "@mui/material";
 import AnalasysTabs from './components/AnalasysTabs';
 import TabAndView from './components/TabAndView';
 import ComparasonBarChart from './components/ComparasonBarChart';
@@ -26,11 +26,23 @@ function App() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <AnalasysTabs>
             <TabAndView tabTitle='Overall'>
-              <ComparasonBarChart
-                teamsDataMap={new Map<number, number>(
-                  [[5614, 5],
-                  [1690, 3]]
-              )} />
+              <Stack direction={"row"}>
+                <ComparasonBarChart
+                  teamsDataMap={new Map<number, number>(
+                    [[5614, 5],
+                    [1690, 3]]
+                )} />
+                <ComparasonBarChart
+                  teamsDataMap={new Map<number, number>(
+                    [[5614, 5],
+                    [1690, 3]]
+                )} />
+                <ComparasonBarChart
+                  teamsDataMap={new Map<number, number>(
+                    [[5614, 5],
+                    [1690, 3]]
+                )} />
+              </Stack>
             </TabAndView>
             <TabAndView tabTitle='Q69'>
               <Typography paragraph>
