@@ -26,27 +26,6 @@ class TabAndView extends Component<TabAndViewProps>{
     }
 }
 
-interface TabViewWrapperProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-function TabViewWrapper(props: TabViewWrapperProps) {
-    const { children, value, index, ...other } = props;
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-      </div>
-    );
-}
-
 class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     constructor(props: AnalasysTabsProps){
         super(props);
@@ -88,9 +67,17 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
                     <Tab label={child.props.tabTitle} {...this.generateTabProps(i)} />
                 )
                 viewList.push(
-                    <TabViewWrapper index={i} value={this.state.tabIndex}>
-                        {child.props.children}
-                    </TabViewWrapper>
+                    // <TabViewWrapper index={i} value={this.state.tabIndex}>
+                    //     {child.props.children}
+                    // </TabViewWrapper>
+                    <div
+                          role="tabpanel"
+                          hidden={this.state.tabIndex !== i}
+                          id={`simple-tabpanel-${this.state.tabIndex}`}
+                          aria-labelledby={`simple-tab-${this.state.tabIndex}`}
+                        >
+                      {this.state.tabIndex === i && <Box sx={{ p: 3 }}>{child.props.children}</Box>}
+                    </div>
                 )
             }
         }  
