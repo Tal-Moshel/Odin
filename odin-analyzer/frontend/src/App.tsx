@@ -4,6 +4,7 @@ import './App.css';
 import { useState } from 'react';
 
 import TeamSelectSidePanel from './components/TeamSelectSidePanel';
+import AnalasysTabs from "./components/AnalasysTabs";
 
 import { Box, Button, Drawer, createTheme, CssBaseline, Typography } from "@mui/material";
 
@@ -25,7 +26,9 @@ function App() {
       <CssBaseline />
       <TeamSelectSidePanel teams_list={selectedTeams} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Typography paragraph>
+        <AnalasysTabs tabCount={5}></AnalasysTabs>
+        
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -51,7 +54,7 @@ function App() {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
   );
