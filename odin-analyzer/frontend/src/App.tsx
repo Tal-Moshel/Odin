@@ -18,7 +18,7 @@ interface AppState {
 }
 
 function App() {
-  const [selectedTeams, setSelectedTeams] = useState([1,2,3,4])
+  const [selectedTeams, setSelectedTeams] = useState([5614,1799,254,1690])
 
   return (
     <Box sx={{ display: 'flex' }}>

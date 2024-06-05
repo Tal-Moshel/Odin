@@ -45,12 +45,12 @@ class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelect
             <Drawer
                   variant="permanent"
                   sx={{
-                    width: "10%",
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: { width: "10%", boxSizing: 'border-box' },
+                    width: "8%",
+                    [`& .MuiDrawer-paper`]: {width: "8%", boxSizing: 'border-box' },
                   }}
                 >
-                <Box sx={{ overflow: 'auto' }}>
+                <Box sx={{ overflow: 'auto', marginLeft:"auto", marginRight: "auto", marginTop: 3}}>
                     <Button variant="contained" onClick={this.on_select_button_press}>Select</Button>
                     <FormGroup>
                         {teams_components}
