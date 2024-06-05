@@ -4,9 +4,10 @@ import './App.css';
 import { useState } from 'react';
 
 import TeamSelectSidePanel from './components/TeamSelectSidePanel';
-import {AnalasysTabs, TabAndView} from "./components/AnalasysTabs";
 
 import { Box, Button, Drawer, createTheme, CssBaseline, Typography } from "@mui/material";
+import AnalasysTabs from './components/AnalasysTabs';
+import TabAndView from './components/TabAndView';
 
 const darkTheme = createTheme({
   palette: {

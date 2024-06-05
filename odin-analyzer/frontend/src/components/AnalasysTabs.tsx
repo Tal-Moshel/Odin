@@ -1,5 +1,7 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { Component, ReactElement, ReactNode, useState } from "react";
+import { TabAndViewProps } from "./TabAndView";
+
 
 interface AnalasysTabsProps {
     children: ReactElement<TabAndViewProps> | Array<ReactElement<TabAndViewProps>>;
@@ -9,22 +11,6 @@ interface AnalasysTabsState {
     tabIndex: number;
 }
 
-interface TabAndViewProps {
-    tabTitle: string;
-    children?: ReactElement | ReactElement[] | JSX.Element | JSX.Element[];
-}
-
-class TabAndView extends Component<TabAndViewProps>{
-    constructor(props: TabAndViewProps){
-        super(props)
-    }
-
-    render() {
-        return (
-            this.props.children
-        )
-    }
-}
 
 class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     constructor(props: AnalasysTabsProps){
@@ -96,4 +82,4 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     }
 }
 
-export {AnalasysTabs, TabAndView}
+export default AnalasysTabs;
