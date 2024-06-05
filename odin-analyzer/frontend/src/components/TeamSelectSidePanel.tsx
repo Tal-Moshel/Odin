@@ -14,15 +14,11 @@ interface TeamSelectSidePanelState {
 class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelectSidePanelState> {
     constructor(props: TeamSelectSidePanelProps){
         super(props);
-        
-        this.state = {
-            teams_select_map: new Map<number,boolean>(
-                this.props.teams_list.map((team_number) => [team_number, true])
-            )
-        }
     }
 
+
     on_select_button_press = () => {
+        console.log(this.state.teams_select_map)
         this.props.on_teams_selected(
             Array.from(this.state.teams_select_map.keys()).filter((value: number) => this.state.teams_select_map.get(value) === true)
         )
@@ -38,6 +34,12 @@ class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelect
                     label={team_number} key={team_number}/>
             )
         })
+
+        this.state = {
+            teams_select_map: new Map<number,boolean>(
+                this.props.teams_list.map((team_number) => [team_number, true])
+            )
+        }
         
         return (
             <Drawer

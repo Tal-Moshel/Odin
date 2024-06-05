@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
 import TeamSelectSidePanel from './components/TeamSelectSidePanel';
 
-import { Box, Drawer, createTheme, CssBaseline, Typography } from "@mui/material";
+import { Box, Button, Drawer, createTheme, CssBaseline, Typography } from "@mui/material";
 
 const darkTheme = createTheme({
   palette: {
@@ -11,19 +13,29 @@ const darkTheme = createTheme({
   }
 })
 
+interface AppState {
+
+}
+
 function App() {
+  const [selectedTeams, setSelectedTeams] = useState([1,2,3,4])
+
+  function changeTeams(){
+    if(JSON.stringify(selectedTeams) === JSON.stringify([1,2,3,4])){
+      setSelectedTeams([5,6,7,8])
+      console.log("yes " + selectedTeams)
+    } else {
+      setSelectedTeams([1,2,3,4])
+      console.log("no " + selectedTeams)
+    }
+  }
+
   return (
-    // <div className="App" color=''>
-    //   <header className="App-header">
-    //     <TeamSelectSidePanel teams_list={[0,1,2,3]} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
-    //     <p>yeah</p>
-    //     <p>hell yeahhh</p>
-    //   </header>
-    // </div>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <TeamSelectSidePanel teams_list={[0,1,2,3]} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
+      <TeamSelectSidePanel teams_list={selectedTeams} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Button onClick={changeTeams}>Change Teams</Button>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
