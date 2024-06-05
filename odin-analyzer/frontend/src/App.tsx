@@ -14,10 +14,6 @@ const darkTheme = createTheme({
   }
 })
 
-interface AppState {
-
-}
-
 function App() {
   const [selectedTeams, setSelectedTeams] = useState([5614,1799,254,1690])
 

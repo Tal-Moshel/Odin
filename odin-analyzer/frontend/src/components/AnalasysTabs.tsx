@@ -26,13 +26,13 @@ class TabAndView extends Component<TabAndViewProps>{
     }
 }
 
-interface TabPanelProps {
+interface TabViewWrapperProps {
     children?: React.ReactNode;
     index: number;
     value: number;
 }
 
-function TabPanelWrapper(props: TabPanelProps) {
+function TabViewWrapper(props: TabViewWrapperProps) {
     const { children, value, index, ...other } = props;
     return (
       <div
@@ -88,9 +88,9 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
                     <Tab label={child.props.tabTitle} {...this.generateTabProps(i)} />
                 )
                 viewList.push(
-                    <TabPanelWrapper index={i} value={this.state.tabIndex}>
+                    <TabViewWrapper index={i} value={this.state.tabIndex}>
                         {child.props.children}
-                    </TabPanelWrapper>
+                    </TabViewWrapper>
                 )
             }
         }  
