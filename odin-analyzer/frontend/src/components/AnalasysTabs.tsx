@@ -2,12 +2,28 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { Component, ReactElement, ReactNode, useState } from "react";
 
 interface AnalasysTabsProps {
-    children?: ReactElement[];
-    tabTexts?: string[];
+    children: Array<ReactElement<TabAndViewProps>>;
 }
 
 interface AnalasysTabsState {
     tabIndex: number;
+}
+
+interface TabAndViewProps {
+    tabTitle: string;
+    children?: ReactElement | ReactElement[] | JSX.Element | JSX.Element[];
+}
+
+class TabAndView extends Component<TabAndViewProps>{
+    constructor(props: TabAndViewProps){
+        super(props)
+    }
+
+    render() {
+        return (
+            this.props.children
+        )
+    }
 }
 
 interface TabPanelProps {
@@ -54,28 +70,22 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     }
 
     render(){
-        let tabList: ReactElement[] = [];
-        if( this.props.tabTexts != null){
-            for(let i = 0; i < this.props.tabTexts.length; i++){
-                tabList.push(
-                    <Tab label={this.props.tabTexts[i]} {...this.generateTabProps(i)} />
-                )
-            }
-        }
-
-
-        let tabsViewList: ReactElement[] = [];
-        if(this.props.children != null){
+        let tabList: ReactNode [] = [];
+        let viewList: ReactNode [] = [];
+        if( this.props.children != null){
             for(let i = 0; i < this.props.children.length; i++){
-                const child: ReactElement = this.props.children[i]
-                tabsViewList.push(
+                let child: ReactNode = this.props.children[i];
+                
+                tabList.push(
+                    <Tab label={child.props.tabTitle} {...this.generateTabProps(i)} />
+                )
+                viewList.push(
                     <TabPanelWrapper index={i} value={this.state.tabIndex}>
-                        {child}
+                        {child.props.children}
                     </TabPanelWrapper>
                 )
             }
-        }
-        
+        }  
 
         return(
             <Box sx={{ width: '100%' }}>
@@ -85,10 +95,10 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
                 </Tabs>
                 </Box>
                 
-                {tabsViewList}
+                {viewList}
             </Box>
         )
     }
 }
 
-export default AnalasysTabs;
+export {AnalasysTabs, TabAndView}
