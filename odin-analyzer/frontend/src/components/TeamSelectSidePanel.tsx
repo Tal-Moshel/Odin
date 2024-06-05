@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component, ReactElement } from "react";
 import Checkbox from "@mui/material/Checkbox"
-import { Box, Drawer, FormGroup, FormControlLabel, Button} from "@mui/material";
+import { Box, Drawer, FormGroup, FormControlLabel, Button, colors} from "@mui/material";
 
 interface TeamSelectSidePanelProps {
     teams_list: number[];
@@ -40,11 +40,20 @@ class TeamSelectSidePanel extends Component<TeamSelectSidePanelProps, TeamSelect
         })
         
         return (
-            <Drawer open={true}>
+            <Drawer
+                  variant="permanent"
+                  sx={{
+                    width: "10%",
+                    flexShrink: 0,
+                    [`& .MuiDrawer-paper`]: { width: "10%", boxSizing: 'border-box' },
+                  }}
+                >
+                <Box sx={{ overflow: 'auto' }}>
                     <Button variant="contained" onClick={this.on_select_button_press}>Select</Button>
                     <FormGroup>
                         {teams_components}
                     </FormGroup>
+                </Box>
             </Drawer> 
         )
     }
