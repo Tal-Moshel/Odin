@@ -20,22 +20,11 @@ interface AppState {
 function App() {
   const [selectedTeams, setSelectedTeams] = useState([1,2,3,4])
 
-  function changeTeams(){
-    if(JSON.stringify(selectedTeams) === JSON.stringify([1,2,3,4])){
-      setSelectedTeams([5,6,7,8])
-      console.log("yes " + selectedTeams)
-    } else {
-      setSelectedTeams([1,2,3,4])
-      console.log("no " + selectedTeams)
-    }
-  }
-
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <TeamSelectSidePanel teams_list={selectedTeams} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Button onClick={changeTeams}>Change Teams</Button>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
