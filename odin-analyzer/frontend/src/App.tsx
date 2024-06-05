@@ -26,7 +26,7 @@ function App() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <AnalasysTabs>
             <TabAndView tabTitle='Overall'>
-              <Stack direction={"row"}>
+              <Stack direction={{ xs: 'column', sm: 'row' }} useFlexGap flexWrap="wrap">
                 <ComparasonBarChart
                   teamsDataMap={new Map<number, number>(
                     [[5614, 5],

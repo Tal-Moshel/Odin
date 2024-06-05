@@ -8,7 +8,6 @@ interface ComparasonBarChartProps {
 class ComparasonBarChart extends Component<ComparasonBarChartProps> {
     constructor(props: ComparasonBarChartProps){
         super(props)
-        console.log(props)
     }
 
     render(): ReactNode {
