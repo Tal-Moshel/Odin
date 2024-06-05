@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { Component, ReactElement, ReactNode, useState } from "react";
 
 interface AnalasysTabsProps {
-    children: Array<ReactElement<TabAndViewProps>>;
+    children: ReactElement<TabAndViewProps> | Array<ReactElement<TabAndViewProps>>;
 }
 
 interface AnalasysTabsState {
@@ -70,11 +70,19 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     }
 
     render(){
+        let tabsAndViews:  Array<ReactElement<TabAndViewProps>> = [];
+
+        if(!Array.isArray(this.props.children)){
+            tabsAndViews.push(this.props.children);
+        }else {
+            tabsAndViews = this.props.children;
+        }
+
         let tabList: ReactNode [] = [];
         let viewList: ReactNode [] = [];
         if( this.props.children != null){
-            for(let i = 0; i < this.props.children.length; i++){
-                let child: ReactNode = this.props.children[i];
+            for(let i = 0; i < tabsAndViews.length; i++){
+                let child: ReactNode = tabsAndViews[i];
                 
                 tabList.push(
                     <Tab label={child.props.tabTitle} {...this.generateTabProps(i)} />
