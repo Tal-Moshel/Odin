@@ -26,7 +26,12 @@ function App() {
       <CssBaseline />
       <TeamSelectSidePanel teams_list={selectedTeams} on_teams_selected={(selected_teams) => {console.log(selected_teams)}}></TeamSelectSidePanel>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <AnalasysTabs tabCount={5}></AnalasysTabs>
+        <AnalasysTabs tabTexts={["Overall", "Q64", "F3"]}>
+          <Box>Paragraph</Box>
+          <Box>
+            text
+          </Box>
+        </AnalasysTabs>
         
         {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

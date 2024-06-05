@@ -1,8 +1,9 @@
 import { Box, Tab, Tabs } from "@mui/material";
-import { Component, useState } from "react";
+import { Component, ReactElement, ReactNode, useState } from "react";
 
 interface AnalasysTabsProps {
-    tabCount: number;
+    children?: ReactElement[];
+    tabTexts?: string[];
 }
 
 interface AnalasysTabsState {
@@ -15,7 +16,7 @@ interface TabPanelProps {
     value: number;
 }
 
-function CustomTabPanel(props: TabPanelProps) {
+function TabPanelWrapper(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
     return (
       <div
@@ -43,7 +44,6 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
         this.setState({
             tabIndex: newIndex
         })
-        console.log("Changed")
     }
     
     generateTabProps = (index: number) => {
@@ -54,25 +54,38 @@ class AnalasysTabs extends Component<AnalasysTabsProps, AnalasysTabsState> {
     }
 
     render(){
-        console.log(this.state)
+        let tabList: ReactElement[] = [];
+        if( this.props.tabTexts != null){
+            for(let i = 0; i < this.props.tabTexts.length; i++){
+                tabList.push(
+                    <Tab label={this.props.tabTexts[i]} {...this.generateTabProps(i)} />
+                )
+            }
+        }
+
+
+        let tabsViewList: ReactElement[] = [];
+        if(this.props.children != null){
+            for(let i = 0; i < this.props.children.length; i++){
+                const child: ReactElement = this.props.children[i]
+                tabsViewList.push(
+                    <TabPanelWrapper index={i} value={this.state.tabIndex}>
+                        {child}
+                    </TabPanelWrapper>
+                )
+            }
+        }
+        
+
         return(
             <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={this.state.tabIndex} onChange={this.changeTab} aria-label="basic tabs example">
-                    <Tab label="Item One" {...this.generateTabProps(0)} />
-                    <Tab label="Item Two" {...this.generateTabProps(1)} />
-                    <Tab label="Item Three" {...this.generateTabProps(2)} />
+                    {tabList}
                 </Tabs>
                 </Box>
-                <CustomTabPanel value={this.state.tabIndex} index={0}>
-                Item One
-                </CustomTabPanel>
-                <CustomTabPanel value={this.state.tabIndex} index={1}>
-                Item Two
-                </CustomTabPanel>
-                <CustomTabPanel value={this.state.tabIndex} index={2}>
-                Item Three
-                </CustomTabPanel>
+                
+                {tabsViewList}
             </Box>
         )
     }
